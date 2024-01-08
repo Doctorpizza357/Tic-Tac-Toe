@@ -194,7 +194,6 @@ public class TicTacToe {
             System.exit(0);
         }
     }
-
     /**
      * This method is used to reset the game once the user clicks restart on the popup after a win or tie
      * it sets all variables to their default state and sets gameOver to false.
