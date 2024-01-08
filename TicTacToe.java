@@ -3,7 +3,6 @@ import java.awt.*;
 
 
 
-@SuppressWarnings("CanBeFinal")
 public class TicTacToe {
     final int boardWidth = 600;
     final int boardHeight = 650;
