@@ -78,7 +78,7 @@ public class TicTacToe {
     /**
      * Checks for winners horizontally, diagonally, and vertical. If it finds a winning case, it sets
      * gameOver to True and calls setWinner to display the correct winner on the GUI
-     * @date 1/7/2024
+     * @date 1/8/2024
      * @author Tomas Bentolila
      */
      void checkWinner() {
@@ -150,7 +150,7 @@ public class TicTacToe {
      * This method is called after checkWinner and is used to display the winner on the GUI
      * @param tile tiles to be changed color depending on how the user one
      * @author Tomas Bentolila
-     * @date 1/7/2024
+     * @date 1/8/2024
      */
     void setWinner(JButton tile) {
         tile.setForeground(Color.green);
