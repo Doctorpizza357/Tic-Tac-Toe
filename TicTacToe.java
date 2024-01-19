@@ -91,6 +91,7 @@ public class TicTacToe {
                     setWinner(board[r][i]);
                 }
                 gameOver = true;
+                showRestartDialog();
                 return;
             }
         }
