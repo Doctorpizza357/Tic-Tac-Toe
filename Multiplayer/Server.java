@@ -4,10 +4,11 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+@SuppressWarnings("CallToPrintStackTrace")
 public class Server {
     private static final int PORT = 12345;
-    private static List<ClientHandler> clients = new ArrayList<>();
-    private static String[][] board = new String[3][3];
+    private static final List<ClientHandler> clients = new ArrayList<>();
+    private static final String[][] board = new String[3][3];
     private static String currentPlayer = "X";
     private static boolean gameStarted = false;
 
@@ -17,7 +18,7 @@ public class Server {
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
             System.out.println("Server started and listening on port " + PORT);
 
-            while (true) {
+            while(true) {
                 Socket socket = serverSocket.accept();
                 ClientHandler clientHandler = new ClientHandler(socket);
                 clients.add(clientHandler);
@@ -50,8 +51,9 @@ public class Server {
         }
     }
 
+    @SuppressWarnings("CallToPrintStackTrace")
     private static class ClientHandler implements Runnable {
-        private Socket socket;
+        private final Socket socket;
         private PrintWriter out;
         private BufferedReader in;
 
@@ -112,14 +114,14 @@ public class Server {
         }
 
         private boolean makeMove(int row, int col) {
-            if (board[row][col] == null && currentPlayer.equals(getCurrentPlayer(socket))) {
+            if (board[row][col] == null && currentPlayer.equals(getCurrentPlayer())) {
                 board[row][col] = currentPlayer;
                 return true;
             }
             return false;
         }
 
-        private String getCurrentPlayer(Socket socket) {
+        private String getCurrentPlayer() {
             return clients.indexOf(this) % 2 == 0 ? "X" : "O";
         }
 
@@ -155,10 +157,7 @@ public class Server {
             if (board[0][0] != null && board[0][0].equals(board[1][1]) && board[1][1].equals(board[2][2])) {
                 return true;
             }
-            if (board[0][2] != null && board[0][2].equals(board[1][1]) && board[1][1].equals(board[2][0])) {
-                return true;
-            }
-            return false;
+            return board[0][2] != null && board[0][2].equals(board[1][1]) && board[1][1].equals(board[2][0]);
         }
 
         private boolean checkDraw() {
