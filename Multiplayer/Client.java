@@ -19,7 +19,7 @@ public class Client {
     PrintWriter out;
     BufferedReader in;
 
-    Client(String serverAddress) throws IOException {
+    public Client(String serverAddress) throws IOException {
         socket = new Socket(serverAddress, 12345);
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -95,6 +95,9 @@ public class Client {
     }
 
     public static void main(String[] args) throws Exception {
+        if (args.length > 0){
+            System.out.println("New Client\nName: " + args[0]+"\nIP: " + args[1]);
+        }
         String serverAddress = JOptionPane.showInputDialog(
                 "Enter Server Address:");
         new Client(serverAddress);
