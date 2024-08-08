@@ -24,20 +24,16 @@ public class Main {
 
         multiplayerButton.setEnabled(false);
 
-        singlePlayerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                new TicTacToe();
-            }
+        singlePlayerButton.addActionListener(e -> {
+            frame.dispose();
+            new TicTacToe();
         });
 
-        multiplayerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        multiplayerButton.addActionListener(e -> {
+            if (serverRunning) {
                 try {
                     InetAddress address = InetAddress.getLocalHost();
-                    String hostIP = address.getHostAddress() ;
+                    String hostIP = address.getHostAddress();
                     String hostName = address.getHostName();
                     frame.dispose();
                     Multiplayer.Client.main(new String[]{hostName, hostIP});
@@ -47,22 +43,17 @@ public class Main {
             }
         });
 
-        startServerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Thread(() -> {
-                    try {
-                        serverRunning = true;
-                        multiplayerButton.setEnabled(true);
-                        JOptionPane.showMessageDialog(frame, "Server started successfully!");
-                        Multiplayer.Server.main(new String[]{});
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(frame, "Failed to start server: " + ex.getMessage());
-                        ex.printStackTrace();
-                    }
-                }).start();
+        startServerButton.addActionListener(e -> new Thread(() -> {
+            try {
+                serverRunning = true;
+                multiplayerButton.setEnabled(true);
+                JOptionPane.showMessageDialog(frame, "Server started successfully!");
+                Multiplayer.Server.main(new String[]{});
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(frame, "Failed to start server: " + ex.getMessage());
+                ex.printStackTrace();
             }
-        });
+        }).start());
 
         panel.add(singlePlayerButton);
         panel.add(multiplayerButton);
