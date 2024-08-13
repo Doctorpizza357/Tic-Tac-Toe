@@ -89,7 +89,7 @@ public class Client {
                     }
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
             }
         }).start();
     }
