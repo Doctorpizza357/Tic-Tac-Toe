@@ -36,7 +36,7 @@ public class Main {
                     frame.dispose();
                     Multiplayer.Client.main(new String[]{hostName, hostIP});
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    ex.printStackTrace(System.out);
                 }
             }
         });
@@ -49,7 +49,7 @@ public class Main {
                 Multiplayer.Server.main(new String[]{});
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(frame, "Failed to start server: " + ex.getMessage());
-                ex.printStackTrace();
+                ex.printStackTrace(System.out);
             }
         }).start());
 
