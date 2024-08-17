@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.InetAddress;
 import Game.TicTacToe;
+import Multiplayer.Client;
+import Multiplayer.Server;
 
 public class Main {
     private static JFrame frame;
@@ -35,7 +37,7 @@ public class Main {
                     String hostIP = address.getHostAddress();
                     String hostName = address.getHostName();
                     frame.dispose();
-                    Multiplayer.Client.main(new String[]{hostName, hostIP});
+                    Client.main(new String[]{hostName, hostIP});
                 } catch (Exception ex) {
                     ex.printStackTrace(System.out);
                 }
@@ -47,7 +49,7 @@ public class Main {
                 serverRunning = true;
                 multiplayerButton.setEnabled(true);
                 JOptionPane.showMessageDialog(frame, "Server started successfully!");
-                Multiplayer.Server.main(new String[]{});
+                Server.main(new String[]{});
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(frame, "Failed to start server: " + ex.getMessage());
                 ex.printStackTrace(System.out);
