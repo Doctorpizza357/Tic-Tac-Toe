@@ -1,3 +1,5 @@
+package Game;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
@@ -20,7 +22,7 @@ public class TicTacToe {
     boolean gameOver = false;
     int turns = 0;
 
-    TicTacToe() {
+    public TicTacToe() {
         frame.setVisible(true);
         frame.setSize(boardWidth, boardHeight);
         frame.setLocationRelativeTo(null);

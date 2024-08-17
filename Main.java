@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.net.InetAddress;
+import Game.TicTacToe;
 
 public class Main {
     private static JFrame frame;
